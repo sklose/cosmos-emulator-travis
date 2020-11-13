@@ -45,3 +45,5 @@ Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulato
 
 Write-Host "Launching Storage Client"
 node storage_index.js
+
+Start-Sleep -s 60
