@@ -2,7 +2,7 @@
 # curl https://aka.ms/cosmosdb-emulator -o .\cosmos.msi
 
 # Write-Host "Installing Emulator"
-# Start-Process -wait .\cosmos.msi -ArgumentList "/quiet"
+# Start-Process -Wait .\cosmos.msi -ArgumentList "/quiet"
 
 # Write-Host "Available Powershell Modules"
 # Get-Module -ListAvailable
@@ -37,13 +37,14 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Write-Host "curl SqlLocalDB.MSI"
 curl 'https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SqlLocalDB.MSI' -o .\SqlLocalDB.MSI
 Write-Host "install SqlLocalDB.MSI"
-Start-Process -wait msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES"
+Start-Process -Wait msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","IACCEPTSQLLOCALDBLICENSETERMS=YES"
+# Start-Process -Wait msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES"
 
 Write-Host "Downloading Storage Emulator"
 curl 'https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409' -o .\az_storage_emulator.msi
 
 Write-Host "Installing Storage Emulator"
-Start-Process -wait .\az_storage_emulator.msi -ArgumentList "/quiet"
+Start-Process -Wait .\az_storage_emulator.msi -ArgumentList "/quiet"
 
 Write-Host "Swap IP"
 $vm_ip = (Get-NetIPAddress -InterfaceAlias "Ethernet" -AddressFamily "IPv4").IPAddress
@@ -53,10 +54,10 @@ $storage_emulator_config_path = "C:\Program Files (x86)\Microsoft SDKs\Azure\Sto
 # Start-Sleep -s 60
 
 Write-Host "SqlLocalDB.exe create MSSQLLocalDB"
-Start-Process -wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "create","MSSQLLocalDB"
+Start-Process -Wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "create","MSSQLLocalDB"
 
 Write-Host "SqlLocalDB.exe start MSSQLLocalDB"
-Start-Process -wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "start","MSSQLLocalDB"
+Start-Process -Wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "start","MSSQLLocalDB"
 
 Write-Host  "AzureStorageEmulator.exe init"
 Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\MSSQLLocalDb", "-inprocess"
