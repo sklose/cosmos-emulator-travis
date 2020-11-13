@@ -21,8 +21,18 @@ async function main() {
   }
   console.log("inserted records into container");
  
-  const doc = await container.item("1").read();
-  console.log("loaded doc id=1", JSON.stringify(doc.item));
+  const querySpec = {
+    query: "SELECT * from c"
+  };
+
+  // read all items in the Items container
+  const { resources: items } = await container.items
+    .query(querySpec)
+    .fetchAll();
+
+  items.forEach(item => {
+    console.log(`${item.id} - ${item.description}`);
+  });
 }
  
 main().catch((error) => {
