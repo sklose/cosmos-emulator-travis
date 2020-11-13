@@ -11,3 +11,5 @@ script:
 - |-
   PowerShell -c "Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine"
   PowerShell -File launch.ps1
+  npm install
+  NODE_TLS_REJECT_UNAUTHORIZED=0 node index.js
