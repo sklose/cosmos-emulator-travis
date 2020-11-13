@@ -7,6 +7,9 @@ curl https://aka.ms/cosmosdb-emulator -o .\cosmos.msi
 Write-Host "Installing Emulator"
 Start-Process -wait .\cosmos.msi -ArgumentList "/quiet"
 
+Write-Host "Loading CosmosDB Module"
+Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
+
 Write-Host "Current Emulator Status"
 Get-CosmosDbEmulatorStatus
 
