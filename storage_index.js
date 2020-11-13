@@ -14,6 +14,7 @@ async function main() {
 
     // Get a reference to a container
     const containerClient = blobServiceClient.getContainerClient(containerName);
+    console.log('\ncontainerClient');
 
     // Create the container
     const createContainerResponse = await containerClient.create();
@@ -47,7 +48,7 @@ async function main() {
     console.log('\t', await streamToString(downloadBlockBlobResponse.readableStreamBody));
 
     console.log('\nDeleting container...');
-    
+
     const deleteContainerResponse = await containerClient.delete();
     console.log("Container was deleted successfully. requestId: ", deleteContainerResponse.requestId);   
 }
@@ -66,6 +67,6 @@ async function streamToString(readableStream) {
     });
   }
 
-main().catch((error) => {
+main().then(() => {console.log("MAIN ENDED");}).catch((error) => {
   console.error(error);
 });

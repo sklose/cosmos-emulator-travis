@@ -40,6 +40,7 @@ Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulato
 
 Start-Sleep -s 60
 
+Write-Host  "AzureStorageEmulator.exe status"
 Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "status"
 
 Write-Host "Launching Storage Client"
