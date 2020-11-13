@@ -23,7 +23,7 @@ Start-CosmosDbEmulator -AllowNetworkAccess -NoFirewall -NoUI -Key $Key -Timeout 
 Write-Host "Current Emulator Status"
 Get-CosmosDbEmulatorStatus
 
-Write-Host "Launching Client"
+Write-Host "Launching Cosmos Client"
 node index.js
 
 # Storage Emulator
@@ -41,3 +41,6 @@ Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulato
 Start-Sleep -s 60
 
 Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "status"
+
+Write-Host "Launching Storage Client"
+node storage_index.js
