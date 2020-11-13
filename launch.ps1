@@ -54,20 +54,17 @@ Start-Process -wait .\az_storage_emulator.msi -ArgumentList "/quiet"
 # Start-Process -wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "start","MSSQLLocalDB"
 
 Write-Host  "AzureStorageEmulator.exe init"
-$process1 = Start-Process -PassThru -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=.", "-inprocess"
-Write-Host $process1
+Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=.", "-inprocess"
 
 Start-Sleep -s 60
 
 Write-Host "AzureStorageEmulator.exe start"
-$process2 = Start-Process -PassThru -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
-Write-Host $process2
+Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
 
 Start-Sleep -s 60
 
 Write-Host  "AzureStorageEmulator.exe status"
-$process3 = Start-Process -PassThru -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "status", "-inprocess"
-Write-Host $process3
+Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "status", "-inprocess"
 
 Write-Host "Launching Storage Client"
 node storage_index.js
