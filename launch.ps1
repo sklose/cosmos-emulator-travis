@@ -1,6 +1,3 @@
-Write-Host "Installing CURL"
-choco install curl -y
-
 Write-Host "Downloading Cosmos Emulator"
 curl https://aka.ms/cosmosdb-emulator -o .\cosmos.msi
 
