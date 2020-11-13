@@ -2,7 +2,7 @@ branches:
   only: 
     - main
 
-language: shell
+language: node_js
 os: windows
 
 script:
