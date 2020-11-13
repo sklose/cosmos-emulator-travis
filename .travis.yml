@@ -8,4 +8,4 @@ os: windows
 script:
 - |-
   PowerShell -c "Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope LocalMachine"
-  PowerShell -File .\launch.ps1
+  PowerShell -File launch.ps1
