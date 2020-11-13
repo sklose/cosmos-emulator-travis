@@ -19,3 +19,6 @@ Start-CosmosDbEmulator -AllowNetworkAccess -NoFirewall -NoUI -Key $Key -Timeout 
 
 Write-Host "Current Emulator Status"
 Get-CosmosDbEmulatorStatus
+
+Write-Host "Launching Client"
+node index.js
