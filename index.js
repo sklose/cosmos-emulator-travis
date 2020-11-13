@@ -22,7 +22,7 @@ async function main() {
   console.log("inserted records into container");
  
   const doc = await container.item("1").read();
-  console.log("loaded doc id=1", JSON.stringify(doc));
+  console.log("loaded doc id=1", JSON.stringify(doc.item));
 }
  
 main().catch((error) => {
