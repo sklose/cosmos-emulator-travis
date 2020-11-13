@@ -1,7 +1,8 @@
 branches:
   only: 
     - main
-    
+
+language: node
 os: windows
 
 script:
