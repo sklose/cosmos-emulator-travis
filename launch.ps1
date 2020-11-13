@@ -41,9 +41,9 @@ curl 'https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409' -o .\az_storag
 Write-Host "Installing Storage Emulator"
 Start-Process -wait .\az_storage_emulator.msi -ArgumentList "/quiet"
 
-$vm_ip = (Get-NetIPAddress -InterfaceAlias "Ethernet" -AddressFamily "IPv4").IPAddress
-$storage_emulator_config_path = "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
-((Get-Content -path $storage_emulator_config_path -Raw) -replace '127.0.0.1', $vm_ip ) | Set-Content -Path $storage_emulator_config_path
+# $vm_ip = (Get-NetIPAddress -InterfaceAlias "Ethernet" -AddressFamily "IPv4").IPAddress
+# $storage_emulator_config_path = "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
+# ((Get-Content -path $storage_emulator_config_path -Raw) -replace '127.0.0.1', $vm_ip ) | Set-Content -Path $storage_emulator_config_path
 
 # Start-Sleep -s 60
 
@@ -52,6 +52,9 @@ $storage_emulator_config_path = "C:\Program Files (x86)\Microsoft SDKs\Azure\Sto
 
 # Write-Host "SqlLocalDB.exe start MSSQLLocalDB"
 # Start-Process -wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "start","MSSQLLocalDB"
+
+Write-Host  "AzureStorageEmulator.exe init"
+Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server","."
 
 Write-Host  "AzureStorageEmulator.exe start"
 Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
