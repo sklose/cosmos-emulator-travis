@@ -22,3 +22,19 @@ Get-CosmosDbEmulatorStatus
 
 Write-Host "Launching Client"
 node index.js
+
+# Storage Emulator
+
+# Azure storage emulator
+Write-Host "Downloading Storage Emulator"
+curl https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409 -o .\az_storage_emulator.msi
+
+Write-Host "Installing Storage Emulator"
+Start-Process -wait .\az_storage_emulator.msi -ArgumentList "/quiet"
+
+Write-Host  "AzureStorageEmulator.exe start"
+Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
+
+Start-Sleep -s 60
+
+Start-Process -wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "status"
