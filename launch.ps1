@@ -42,6 +42,7 @@ Start-Process -Wait -Verb RunAs msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","/
 Get-ChildItem -Path "$env"
 Get-ChildItem -Path "C:\"
 Get-ChildItem -Path "C:\Program Files"
+Get-ChildItem -Path "C:\Program Files (x86)"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools"
