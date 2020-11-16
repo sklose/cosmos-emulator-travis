@@ -68,5 +68,5 @@ async function streamToString(readableStream) {
   }
 
 main().then(() => {console.log("MAIN ENDED");}).catch((error) => {
-  console.error(error);
+    console.error(error);
 });
