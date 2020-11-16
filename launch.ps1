@@ -101,3 +101,8 @@ Write-Host "Launching Storage Client"
 node storage_index.js
 
 Start-Sleep -s 60
+
+Write-Host "Launching Queue Client"
+node storage_index.js
+
+Start-Sleep -s 60
