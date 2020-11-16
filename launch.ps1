@@ -53,20 +53,6 @@ Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools\Binn"
 
-Get-ChildItem -Path "C:\Program Files\Microsoft SDKs"
-Get-ChildItem -Path "C:\Program Files\Microsoft SDKs\Azure"
-Get-ChildItem -Path "C:\Program Files\Microsoft SDKs\Azure\Storage Emulator"
-
-Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs"
-Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure"
-Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator"
-
-Write-Host "AzureStorageEmulator.exe.config"
-Get-Content -Path "C:\Program Files\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
-
-Write-Host "AzureStorageEmulator.exe.config (x86)"
-Get-Content -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
-
 Write-Host "Get Output.txt"
 Get-Content -Path "Output.txt"
 
@@ -82,6 +68,20 @@ Start-Process -Wait .\az_storage_emulator.msi -ArgumentList "/quiet"
 Get-ChildItem -Path "C:\"
 Get-ChildItem -Path "C:\Program Files"
 Get-ChildItem -Path "C:\Program Files (x86)"
+
+Get-ChildItem -Path "C:\Program Files\Microsoft SDKs"
+Get-ChildItem -Path "C:\Program Files\Microsoft SDKs\Azure"
+Get-ChildItem -Path "C:\Program Files\Microsoft SDKs\Azure\Storage Emulator"
+
+Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs"
+Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure"
+Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator"
+
+Write-Host "AzureStorageEmulator.exe.config"
+Get-Content -Path "C:\Program Files\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
+
+Write-Host "AzureStorageEmulator.exe.config (x86)"
+Get-Content -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
 
 Write-Host "Swap IP"
 $vm_ip = (Get-NetIPAddress -InterfaceAlias "Ethernet" -AddressFamily "IPv4").IPAddress
