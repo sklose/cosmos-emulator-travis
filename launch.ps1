@@ -78,7 +78,9 @@ Write-Host "SqlLocalDB.exe create MSSQLLocalDB"
 Start-Process -Wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "create","MSSQLLocalDB"
 
 Write-Host "SqlLocalDB.exe start MSSQLLocalDB"
-Start-Process -Wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "start","MSSQLLocalDB"
+Start-Process "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "start","MSSQLLocalDB"
+
+Start-Sleep -s 60
 
 Write-Host  "AzureStorageEmulator.exe init"
 Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\MSSQLLocalDb", "-inprocess"
@@ -86,7 +88,7 @@ Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulato
 Start-Sleep -s 60
 
 Write-Host "AzureStorageEmulator.exe start"
-Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
+Start-Process "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
 
 Start-Sleep -s 60
 
