@@ -37,7 +37,9 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 Write-Host "curl SqlLocalDB.MSI"
 curl 'https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SqlLocalDB.MSI' -o .\SqlLocalDB.MSI
 Write-Host "install SqlLocalDB.MSI"
-Start-Process -Wait -Verb RunAs msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES"
+Start-Process -Wait msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES" -RedirectStandardOutput "Output.txt" -RedirectStandardError "OutputError.txt"
+
+Start-Sleep -s 60
 
 Get-ChildItem -Path "$env"
 Get-ChildItem -Path "C:\"
@@ -48,11 +50,21 @@ Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools\Binn"
 
+Write-Host "Get Output.txt"
+Get-Content -Path "Output.txt"
+
+Write-Host "Get OutputError.txt"
+Get-Content -Path "OutputError.txt"
+
 Write-Host "Downloading Storage Emulator"
 curl 'https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409' -o .\az_storage_emulator.msi
 
 Write-Host "Installing Storage Emulator"
 Start-Process -Wait .\az_storage_emulator.msi -ArgumentList "/quiet"
+
+Get-ChildItem -Path "C:\"
+Get-ChildItem -Path "C:\Program Files"
+Get-ChildItem -Path "C:\Program Files (x86)"
 
 Write-Host "Swap IP"
 $vm_ip = (Get-NetIPAddress -InterfaceAlias "Ethernet" -AddressFamily "IPv4").IPAddress
