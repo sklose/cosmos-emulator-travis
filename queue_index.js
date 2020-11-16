@@ -6,7 +6,7 @@ const connStr = process.env.AZURE_STORAGE_CONNECTION_STRING;
 const queueName = "queueone";
 
 async function main() {
-    const queueClient = new QueueClient(AZURE_STORAGE_CONNECTION_STRING, queueName);
+    const queueClient = new QueueClient(connStr, queueName);
 
     // Create queue
     console.log("\nCreating queue...");
