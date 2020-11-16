@@ -3,7 +3,7 @@
 const { BlobServiceClient } = require('@azure/storage-blob');
 
 const connStr = process.env.AZURE_STORAGE_CONNECTION_STRING;
-const containerName = "ContainerOne";
+const containerName = "containerone";
 
 async function main() {
     const blobServiceClient = BlobServiceClient.fromConnectionString(connStr);
