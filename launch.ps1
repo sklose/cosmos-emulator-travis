@@ -30,6 +30,8 @@
 
 # Azure storage emulator
 
+Get-Help Start-Process -Examples
+
 Write-Host "Set-NetFirewallProfile"
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
@@ -50,6 +52,20 @@ Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools"
 Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools\Binn"
+
+Get-ChildItem -Path "C:\Program Files\Microsoft SDKs"
+Get-ChildItem -Path "C:\Program Files\Microsoft SDKs\Azure"
+Get-ChildItem -Path "C:\Program Files\Microsoft SDKs\Azure\Storage Emulator"
+
+Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs"
+Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure"
+Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator"
+
+Write-Host "AzureStorageEmulator.exe.config"
+Get-Content -Path "C:\Program Files\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
+
+Write-Host "AzureStorageEmulator.exe.config (x86)"
+Get-Content -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
 
 Write-Host "Get Output.txt"
 Get-Content -Path "Output.txt"
@@ -83,7 +99,8 @@ Start-Process "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.e
 Start-Sleep -s 60
 
 Write-Host  "AzureStorageEmulator.exe init"
-Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\MSSQLLocalDb", "-inprocess"
+Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server",".","-inprocess"
+# Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\MSSQLLocalDb", "-inprocess"
 
 Start-Sleep -s 60
 
