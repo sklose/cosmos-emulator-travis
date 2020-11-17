@@ -35,6 +35,6 @@ async function main() {
   });
 }
  
-main().catch((error) => {
-  console.error(error);
+main().then(() => {console.log("Cosmos Main Done");}).catch((error) => {
+    console.error(error);
 });
