@@ -67,6 +67,6 @@ async function streamToString(readableStream) {
     });
   }
 
-main().then(() => {console.log("Storage Main Ended");}).catch((error) => {
+main().then(() => {console.log("Storage Main Done");}).catch((error) => {
     console.error(error);
 });
