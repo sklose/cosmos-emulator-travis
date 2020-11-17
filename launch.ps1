@@ -4,9 +4,6 @@ curl https://aka.ms/cosmosdb-emulator -o .\cosmos.msi
 Write-Host "Installing Emulator"
 Start-Process -Wait .\cosmos.msi -ArgumentList "/quiet"
 
-# Write-Host "Available Powershell Modules"
-# Get-Module -ListAvailable
-
 Write-Host "Loading CosmosDB Module"
 Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
 
@@ -26,45 +23,20 @@ Get-CosmosDbEmulatorStatus
 Write-Host "Launching Cosmos Client"
 node index.js
 
-# Azure Storage Emulator
-
 Write-Host "Set-NetFirewallProfile"
 Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 
-# # SQL DB
-Write-Host "curl SqlLocalDB.MSI"
+Write-Host "Downloading SqlLocalDB.MSI"
 curl 'https://download.microsoft.com/download/8/D/D/8DD7BDBA-CEF7-4D8E-8C16-D9F69527F909/ENU/x64/SqlLocalDB.MSI' -o .\SqlLocalDB.MSI
-Write-Host "install SqlLocalDB.MSI"
-Start-Process -Wait .\SqlLocalDB.MSI -ArgumentList "/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES"
-# Start-Process -Wait msiexec -ArgumentList "/i",".\SqlLocalDB.MSI","/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES"
 
-# Start-Sleep -s 60
+Write-Host "Installing SqlLocalDB.MSI"
+Start-Process -Wait .\SqlLocalDB.MSI -ArgumentList "/qn","IACCEPTSQLLOCALDBLICENSETERMS=YES"
 
 Write-Host "Downloading Storage Emulator"
 curl 'https://go.microsoft.com/fwlink/?linkid=717179&clcid=0x409' -o .\az_storage_emulator.msi
 
 Write-Host "Installing Storage Emulator"
 Start-Process -Wait .\az_storage_emulator.msi -ArgumentList "/quiet"
-
-# Get-ChildItem -Path "$env"
-# Get-ChildItem -Path "C:\"
-# Get-ChildItem -Path "C:\Program Files"
-# Get-ChildItem -Path "C:\Program Files (x86)"
-# Get-ChildItem -Path "C:\Program Files\Microsoft SQL Server\110\Tools\Binn"
-# Get-ChildItem -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator"
-
-# Write-Host "AzureStorageEmulator.exe.config (x86)"
-# Get-Content -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
-
-# Write-Host "Swap IP"
-# $vm_ip = (Get-NetIPAddress -InterfaceAlias "Ethernet" -AddressFamily "IPv4").IPAddress
-# $storage_emulator_config_path = "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
-# ((Get-Content -path $storage_emulator_config_path -Raw) -replace '127.0.0.1', $vm_ip ) | Set-Content -Path $storage_emulator_config_path
-
-# Write-Host "AzureStorageEmulator.exe.config (x86)"
-# Get-Content -Path "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe.config"
-
-# Start-Sleep -s 60
 
 Write-Host "SqlLocalDB.exe create MSSQLLocalDB"
 Start-Process -Wait "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.exe" -ArgumentList "create","MSSQLLocalDB"
@@ -75,15 +47,7 @@ Start-Process "C:\Program Files\Microsoft SQL Server\110\Tools\Binn\SqlLocalDB.e
 Start-Sleep -s 30
 
 Write-Host  "AzureStorageEmulator.exe init"
-# Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\MSSQLLocalDb","-inprocess"
-# Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\.\MSSQLLocalDb","-inprocess"
-# Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server","(localdb)\MSSQLLocalDb","-inprocess"
 Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server","(localdb)\.\MSSQLLocalDb","-inprocess"
-
-# Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server",".","-inprocess"
-# Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "init","/server=(localdb)\MSSQLLocalDb", "-inprocess"
-
-# Start-Sleep -s 60
 
 Write-Host "AzureStorageEmulator.exe start"
 Start-Process "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "start"
@@ -93,12 +57,8 @@ Start-Sleep -s 30
 Write-Host  "AzureStorageEmulator.exe status"
 Start-Process -Wait "C:\Program Files (x86)\Microsoft SDKs\Azure\Storage Emulator\AzureStorageEmulator.exe"  -ArgumentList "status", "-inprocess"
 
-# Start-Sleep -s 30
-
 Write-Host "Launching Storage Client"
 node storage_index.js
-
-# Start-Sleep -s 60
 
 Write-Host "Launching Queue Client"
 node queue_index.js
