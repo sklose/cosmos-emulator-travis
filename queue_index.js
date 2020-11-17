@@ -1,4 +1,4 @@
-// code example from https://docs.microsoft.com/en-us/azure/storage/queues/storage-quickstart-queues-nodejs
+// code example adapted from https://docs.microsoft.com/en-us/azure/storage/queues/storage-quickstart-queues-nodejs
 
 const { QueueClient } = require("@azure/storage-queue");
 
@@ -74,6 +74,6 @@ async function main() {
     console.log("Queue deleted, requestId:", deleteQueueResponse.requestId);
 }
 
-main().then(() => {console.log("MAIN ENDED");}).catch((error) => {
+main().then(() => {console.log("Queue Main Done");}).catch((error) => {
     console.error(error);
 });

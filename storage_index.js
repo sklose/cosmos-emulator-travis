@@ -1,4 +1,4 @@
-// code example from https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs
+// code example adapted from https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-nodejs
 
 const { BlobServiceClient } = require('@azure/storage-blob');
 
@@ -67,6 +67,6 @@ async function streamToString(readableStream) {
     });
   }
 
-main().then(() => {console.log("MAIN ENDED");}).catch((error) => {
+main().then(() => {console.log("Storage Main Ended");}).catch((error) => {
     console.error(error);
 });
